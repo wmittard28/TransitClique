@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
 
   post '/posts/:post_id/comments' do  #create comment
     post_id = params[:post_id]
-    if params[:comment][:content] == ""
-      flash[:message] = "Content cannot be blank!"
+    if params[:comment][:content] == empty?
+      flash[:message] = "Boxes can't be empty"
       redirect to "/posts/#{post_id}/comments/new"
     else
       comment = params[:comment]
@@ -31,7 +31,6 @@ class CommentsController < ApplicationController
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
-      @time_ago = Time.now - @comment.updated_at
       erb :'comments/show'
     else
       redirect_if_not_logged_in
@@ -56,7 +55,7 @@ class CommentsController < ApplicationController
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
-      if params[:comment][:content] == ""
+      if params[:comment][:content] == empty?
         flash[:message] = "Content cannot be blank!"
         redirect to "/posts/#{@post_id}/comments/#{@comment.id}/edit"
       else

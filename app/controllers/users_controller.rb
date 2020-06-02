@@ -20,20 +20,14 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      flash[:message] = "Please fill in all parts!"
+    if params[:username] == "" ||
+      params[:email] == "" ||
+      params[:password] == ""
+      flash[:message] = "Please insert a valid command"
       redirect to '/signup'
     elsif
       username_exists?(params[:username]) || email_exists?(params[:email])
-      flash[:message] = "This username and/or email is already in use."
-      redirect to '/signup'
-    elsif
-      params[:username].include?(" ") || params[:username].include?("&") || params[:username].include?("=") || params[:username].include?("<") || params[:username].include?(">") || params[:username].include?("+") || params[:username].include?(",") || params[:username].include?("..")
-      flash[:message] = "Usernames can't contain an ampersand (&), equal sign (=), brackets (<,>), plus sign (+), comma (,), or more than one period (.) in a row."
-      redirect to '/signup'
-    elsif
-      params[:password].length < 8
-      flash[:message] = "Passwords must contain a minimum of 8 characters"
+      flash[:message] = "Username/Email already exists"
       redirect to '/signup'
     else
       @new_user = User.create(username: params[:username], email: params[:email].downcase, password: params[:password])

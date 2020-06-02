@@ -24,8 +24,12 @@ class PostsController < ApplicationController
   end
 
   post '/posts' do #create post
-    if params[:post][:title] == "" || params[:post][:content] == "" || params[:post][:start_date] == "" || params[:post][:end_date] == "" || params[:post][:end_date] < params[:post][:start_date]
-      flash[:message] = "Please fill in all parts! End Date must be after Start Date."
+    if params[:post][:title] == empty? ||
+        params[:post][:content] == empty? ||
+        params[:post][:start_date] == empty? ||
+        params[:post][:end_date] == empty? ||
+        params[:post][:end_date] < params[:post][:start_date]
+      flash[:message] = "Please try again"
       redirect to "/posts/new"
     else
       @post = Post.new(params[:post])
