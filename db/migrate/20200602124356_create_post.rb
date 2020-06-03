@@ -4,8 +4,8 @@ class CreatePost < ActiveRecord::Migration
       t.integer :user_id
   		t.string :title
   		t.string :content
-      t.date :start_date
-      t.date :end_date
+      t.date :travel_date
+      t.date :return_date
       t.timestamps
   	end
   end

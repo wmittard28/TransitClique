@@ -7,21 +7,19 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
   <a class="navbar-brand" href="#">
   <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
   Transit Clique
 </a>
+Logged in as: @<a href="/users/<%=@user.username%>"><%=@user.username%></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/posts/new">New Post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/logout">Log Out</a>
+          <a class="nav-link font-weight-bold text-white" href="/logout">Log Out</a>
         </li>
       </ul>
     </div>
@@ -29,20 +27,31 @@
   <br><br>
   <a> <img src="/images/profile/images.jpg" width="200" height="200" class="rounded-circle" alt=""></a>
   <div class="container" style="width:70%;">
-    <h2>View all posts by <%= @user.username %>.</h2>
+  <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:20rem;">
+  <h2>Profile: @<%= @user.username %></h2>
+    </div>
     <br><br>
+    <h4>Post history:</h4>
+    <br>
     <% @posts.each do |post| %>
       <h4> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h4>
       <p>
-        Posted by: <a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
+        Posted by: @<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
       </p>
-      <p><em>Travel Dates: <%= post.start_date %> - <%= post.end_date %></em></p>
+      <p><em>Travel Date: <%= post.travel_date %> Return Date: <%= post.return_date %></em></p>
       <p><%= post.content %></p>
       <p>Destinations:</p>
         <% post.destinations.each do |d| %>
         <span class="badge badge-primary"><%= d.country %></span>
       <% end %> <br><br><br>
     <% end %>
+    <div style="text-align: center">
+      <a href="/posts/new" ><input type="button" class="btn btn-dark btn-lg" value="Create New Post" /></a>
+    </div>
+    <br>
+    <div style="text-align: center">
+    <a href="/posts" ><input type="button" class="btn btn-dark btn-lg" value="Return to Home" /></a>
+    </div>
   </div>
   <!-- CSS -->
   <style type="text/css">

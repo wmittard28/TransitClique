@@ -28,9 +28,9 @@ class PostsController < ApplicationController
   post '/posts' do #create post
     if params[:post][:title] == "" ||
         params[:post][:content] == "" ||
-        params[:post][:start_date] == "" ||
-        params[:post][:end_date] == "" ||
-        params[:post][:end_date] < params[:post][:start_date]
+        params[:post][:travel_date] == "" ||
+        params[:post][:return_date] == "" ||
+        params[:post][:return_date] < params[:post][:travel_date]
       flash[:message] = "Please try again"
       redirect to "/posts/new"
     else
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
   patch '/posts/:post_id' do #update post
     if logged_in?
       @post = Post.find_by_id(params[:post_id])
-      if params[:post][:title] == "" || params[:post][:content] == "" || params[:post][:start_date] == "" || params[:post][:end_date] == "" || params[:post][:end_date] < params[:post][:start_date]
+      if params[:post][:title] == "" || params[:post][:content] == "" || params[:post][:travel_date] == "" || params[:post][:return_date] == "" || params[:post][:return_date] < params[:post][:travel_date]
         flash[:message] = "Please fill in all parts! End Date must be after Start Date."
         redirect to "/posts/#{@post.id}/edit"
       else

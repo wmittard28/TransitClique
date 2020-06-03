@@ -7,7 +7,7 @@
   </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
 <a class="navbar-brand" href="#">
 <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
 Transit Clique
@@ -38,12 +38,12 @@ Transit Clique
       <input type="text" id="post_content" class="form-control" name="post[content]" value="<%= @post.content %>"></input>
     </div>
     <div class="form-group">
-      <label for="start_date">Start Date</label>
-      <input type="date" id="start_date" class="form-control" name="post[start_date]" value="<%= @post.start_date %>"></input>
+      <label for="travel_date">Travel Date</label>
+      <input type="date" id="travel_date" class="form-control" name="post[travel_date]" value="<%= @post.travel_date %>"></input>
     </div>
     <div>
-      <label for="end_date">End Date</label>
-      <input type="date" id="end_date" class="form-control" name="post[end_date]" value="<%= @post.end_date %>"></input>
+      <label for="return_date">Return Date</label>
+      <input type="date" id="return_date" class="form-control" name="post[return_date]" value="<%= @post.return_date %>"></input>
     </div>
     <br><br>
     <h4>Edit destinaion tags:</h4>
@@ -63,7 +63,7 @@ Transit Clique
   <form action="/posts/<%=@post.id%>/delete" method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <div style="text-align: center">
-      <button type="submit" class="btn btn-warning">Delete Post</button>
+      <button type="submit" class="btn btn-danger">Delete Post</button>
     </div>
   </form>
 </div>

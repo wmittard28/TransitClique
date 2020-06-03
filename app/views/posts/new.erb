@@ -6,12 +6,12 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
     <a class="navbar-brand" href="#">
     <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     Transit Clique
-  </a>
+    </a>
     </nav>
 
     <% if !!flash[:message] %>
@@ -37,12 +37,12 @@
           <textarea type="text" id="post_content" class="form-control" rows="3" name="post[content]"></textarea>
         </div>
         <div class="form-group">
-          <label for="start_date">Start Date</label>
-          <input type="date" id="start_date" class="form-control" name="post[start_date]">
+          <label for="travel_date">Travel Date</label>
+          <input type="date" id="travel_date" class="form-control" name="post[travel_date]">
         </div>
         <div>
-          <label for="end_date">End Date</label>
-          <input type="date" id="end_date" class="form-control" name="post[end_date]">
+          <label for="return_date">Return Date</label>
+          <input type="date" id="return_date" class="form-control" name="post[return_date]">
         </div>
         <br><br>
         <h4>Select all destinaions that apply:</h4>
@@ -55,20 +55,21 @@
         </div>
         <br>
         <div style="text-align: center">
-          <button type="submit" class="btn btn-dark">Create New Post</button><br><br>
+          <button type="submit" class="btn btn-dark btn-lg">Create New Post</button><br><br>
+          <a href="/posts" ><input type="button" class="btn btn-dark btn-lg" value="Return Home" /></a>
         </div>
       </form>
     </div>
 
     <!-- CSS -->
-  <style type="text/css">
+   <style type="text/css">
     html, body { height: 1000%;}
     body {
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAABlBMVEXr6+vq6urHpScPAAABcklEQVR4nO3a22rDMBBAQfn/f7qsK2H51jpOEME78xL2IbQ6rRUJUgoAAAAAXDCFT7y3H6b9MIgG4xscrDRPg6GrumH1K/4/aHB7J3jZoNVfXfZqGNVgaAQN0u8H9/8+Grzxrvn10vDFNNAguC9s16HB+w3K6fDVDebf8e47X/ohQxuscmyGo6VrAAAAAAAAAAAAbLUv5Ez165FHQ9kMT6PBbFl2e9kMZTc8Tr/sw6Hsh6fRoPL9RA3C+UrzNIDgWbAnhswN3Bc0qE7Pyu5My1D2w9NoUGX+XGg0cE6E5uIW8OhnwZ6Yu4H7ggaVs7IGQYMq8+dCo8Ffcq6avOwH7o0h8/+B+4IGlbOyBkGDKvPnQqMB0NgPNAiZG7gvaFA5K2sQNKgyfy40GgCN/UCD/khwNJSD4UncFzQA+Bg7pAZBAwB67SaVmQYaQONB0CBoAEDPWVmDoAH88iBoEDQAoOesrAGwsBloEDQAoOe+oAFQfgDMfQ5hm8Ic0AAAAABJRU5ErkJggg==);
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;}
-  </style>
+   </style>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

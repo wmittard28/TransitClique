@@ -7,7 +7,7 @@
   </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
 <a class="navbar-brand" href="#">
 <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
 Transit Clique
@@ -21,7 +21,6 @@ Transit Clique
   </div>
 <% end %>
 
-<a href="/posts/<%=@post_id%>"><button type="button" class="btn btn-link disabled">Back to post</button></a>
 <br><br>
 <div style="text-align: center">
   <h4>Edit Your Post</h4>
@@ -40,9 +39,13 @@ Transit Clique
   <form action="/posts/<%=@post_id%>/comments/<%=@comment.id%>/delete" method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <div style="text-align: center">
-      <button type="submit" class="btn btn-warning">Delete Comment</button>
+      <button type="submit" class="btn btn-danger">Delete Comment</button>
     </div>
   </form>
+  <br>
+  <div style="text-align: center">
+    <a href="/posts/<%=@post_id%>" ><input type="button" class="btn btn-dark btn-md" value="Return to post" /></a>
+    </div>
 </div>
 
 <!-- CSS -->

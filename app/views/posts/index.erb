@@ -33,17 +33,17 @@
   <br>
   </div>
   <br><br>
-  <div class="container" style="width:70%;">
-    <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:rem;">
+  <div class="card border-primary mb-3 container" style="width:100%;">
+    <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:69.25rem;">
     <h2>Transit Clique Community Home Page</h2>
     </div>
     <br><br>
     <% @posts.each do |post| %>
       <h4> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h4>
       <p>
-        Posted by: <a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
+        Posted by: @<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
       </p>
-      <p><em>Travel Dates: <%= post.start_date %> - <%= post.end_date %></em></p>
+      <p><em>Travel Dates: <%= post.travel_date %> Return Date: <%= post.return_date %></em></p>
       <p><%= post.content %> </p>
       <p>
         Destinations:<% post.destinations.each do |d| %>

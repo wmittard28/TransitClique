@@ -7,13 +7,12 @@
   </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
     <a class="navbar-brand" href="#">
     <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     Transit Clique
   </a>
     </nav>
-    <a href="/posts/<%=@post_id%>"><button type="button" class="btn btn-link disabled">Back to post</button></a>
     <br><br>
     <div class="container" style="width:70%;">
       <p>
@@ -22,8 +21,12 @@
       <p><%= @comment.content %></p>
       <!-- User can see edit button, if it is their comment -->
       <% if @comment.user_id == current_user.id %>
-        <a href="/posts/<%=@post_id%>/comments/<%=@comment.id%>/edit"><button type="submit" class="btn btn-dark fonr-weight-bold text-white">Edit your comment</button></a>
+        <a href="/posts/<%=@post_id%>/comments/<%=@comment.id%>/edit"><button type="submit" class="btn btn-dark fonr-weight-bold text-white">Edit Comment</button></a>
       <%end%>
+    <br><br><br>
+    <div style="text-align: center">
+    <a href="/posts" ><input type="button" class="btn btn-dark btn-lg" value="Return Home" /></a>
+    </div>
     </div>
 
     <!-- CSS -->
