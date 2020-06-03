@@ -11,7 +11,8 @@ class PostsController < ApplicationController
       @posts = Post.all
       erb :'posts/index'
     else
-      redirect_if_not_logged_in
+        flash[:message] = "Please Log in"
+      redirect 'login'
     end
   end
 
@@ -19,15 +20,16 @@ class PostsController < ApplicationController
     if logged_in?
       erb :'posts/new'
     else
-      redirect_if_not_logged_in
+        flash[:message] = "Please Log in"
+      redirect 'login'
     end
   end
 
   post '/posts' do #create post
-    if params[:post][:title] == empty? ||
-        params[:post][:content] == empty? ||
-        params[:post][:start_date] == empty? ||
-        params[:post][:end_date] == empty? ||
+    if params[:post][:title] == "" ||
+        params[:post][:content] == "" ||
+        params[:post][:start_date] == "" ||
+        params[:post][:end_date] == "" ||
         params[:post][:end_date] < params[:post][:start_date]
       flash[:message] = "Please try again"
       redirect to "/posts/new"
@@ -46,7 +48,7 @@ class PostsController < ApplicationController
       @comments = Comment.where("post_id = #{@post.id}") #all comments where post id is == the current post id
       erb :'posts/show'
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
@@ -59,7 +61,7 @@ class PostsController < ApplicationController
         redirect to "/posts" #redirect to index
       end
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
@@ -75,21 +77,18 @@ class PostsController < ApplicationController
         redirect to "/posts/#{@post.id}"
       end
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
   delete '/posts/:post_id/delete' do #delete post
-   if logged_in?
       @post = Post.find_by_id(params[:post_id])
-      if @post.user_id == current_user.id
+      if logged_in? && @post.user_id == current_user.id
         @post.delete
         redirect to "/posts"
-      else
-        redirect to "/posts"
-      end
     else
-      redirect_if_not_logged_in
+        flash[:message] = "Please Log in"
+      redirect 'login'
     end
   end
 end

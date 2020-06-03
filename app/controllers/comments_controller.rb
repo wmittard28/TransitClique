@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
       @comment = Comment.find_by_id(params[:comment_id])
       erb :'comments/show'
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
         redirect to "/posts/#{@post_id}" #redirect to comments index
       end
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
       if params[:comment][:content] == empty?
-        flash[:message] = "Content cannot be blank!"
+        flash[:message] = "Boxes can't be blank"
         redirect to "/posts/#{@post_id}/comments/#{@comment.id}/edit"
       else
         @comment.update(params[:comment])
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
         redirect to "/posts/#{@post_id}/comments/#{@comment.id}"
       end
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 
@@ -79,7 +79,7 @@ class CommentsController < ApplicationController
         redirect to "/posts/#{@post_id}" #redirect to comments index
       end
     else
-      redirect_if_not_logged_in
+      redirect 'login'
     end
   end
 end

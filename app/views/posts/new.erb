@@ -45,7 +45,7 @@
           <input type="date" id="end_date" class="form-control" name="post[end_date]">
         </div>
         <br><br>
-        <h4>Select all destinaion tags:</h4>
+        <h4>Select all destinaions that apply:</h4>
         <div style="overflow-y: scroll; height:300px;">
           <% Destination.all.each do |d| %>
             <input type="checkbox" name="post[destination_ids][]" value="<%= d.id %>" id="destination_<%= d.id %>">
@@ -59,6 +59,16 @@
         </div>
       </form>
     </div>
+
+    <!-- CSS -->
+  <style type="text/css">
+    html, body { height: 1000%;}
+    body {
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAABlBMVEXr6+vq6urHpScPAAABcklEQVR4nO3a22rDMBBAQfn/f7qsK2H51jpOEME78xL2IbQ6rRUJUgoAAAAAXDCFT7y3H6b9MIgG4xscrDRPg6GrumH1K/4/aHB7J3jZoNVfXfZqGNVgaAQN0u8H9/8+Grzxrvn10vDFNNAguC9s16HB+w3K6fDVDebf8e47X/ohQxuscmyGo6VrAAAAAAAAAAAAbLUv5Ez165FHQ9kMT6PBbFl2e9kMZTc8Tr/sw6Hsh6fRoPL9RA3C+UrzNIDgWbAnhswN3Bc0qE7Pyu5My1D2w9NoUGX+XGg0cE6E5uIW8OhnwZ6Yu4H7ggaVs7IGQYMq8+dCo8Ffcq6avOwH7o0h8/+B+4IGlbOyBkGDKvPnQqMB0NgPNAiZG7gvaFA5K2sQNKgyfy40GgCN/UCD/khwNJSD4UncFzQA+Bg7pAZBAwB67SaVmQYaQONB0CBoAEDPWVmDoAH88iBoEDQAoOesrAGwsBloEDQAoOe+oAFQfgDMfQ5hm8Ic0AAAAABJRU5ErkJggg==);
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;}
+  </style>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

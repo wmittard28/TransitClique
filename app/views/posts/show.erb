@@ -35,13 +35,13 @@
     <p><em>Travel Dates: <%= @post.start_date %> - <%= @post.end_date %></em></p>
     <p><%= @post.content %></p>
     <p>
-      Destination Tags: <% @post.destinations.each do |d| %>
-        <span class="badge badge-success"><%= d.country %></span>
+      Destinations: <% @post.destinations.each do |d| %>
+        <span class="badge badge-primary"><%= d.country %></span>
       <%end%>
     </p>
     <!-- User can see edit button, if it is their post -->
     <% if @post.user_id == current_user.id %>
-      <a href="/posts/<%=@post.id%>/edit"><button type="submit" class="btn btn-warning">Edit your post</button></a>
+      <a href="/posts/<%=@post.id%>/edit"><button type="submit" class="btn btn-dark">Edit your post</button></a>
     <%end%>
   </div>
   <br><br>
@@ -54,15 +54,25 @@
       <p><%= comment.content %></p>
       <!-- User can see edit button, if it is their comment -->
       <% if comment.user_id == current_user.id %>
-        <a href="/posts/<%=@post.id%>/comments/<%=comment.id%>/edit" ><input type="button" class="btn btn-warning" value="Edit Your comment" /></a>
+        <a href="/posts/<%=@post.id%>/comments/<%=comment.id%>/edit" ><input type="button" class="btn btn-dark" value="Edit Your comment" /></a>
       <%end%>
       <br><br>
     <%end%>
     <br><br>
     <div>
-      <a href="/posts/<%=@post.id%>/comments/new" ><input type="button" class="btn btn-primary btn-lg btn-block" value="New Comment" /></a>
+      <a href="/posts/<%=@post.id%>/comments/new" ><input type="button" class="btn btn-dark btn-lg btn-block" value="New Comment" /></a>
     </div>
   </div>
+
+  <!-- CSS -->
+  <style type="text/css">
+    html, body { height: 1000%;}
+    body {
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAABlBMVEXr6+vq6urHpScPAAABcklEQVR4nO3a22rDMBBAQfn/f7qsK2H51jpOEME78xL2IbQ6rRUJUgoAAAAAXDCFT7y3H6b9MIgG4xscrDRPg6GrumH1K/4/aHB7J3jZoNVfXfZqGNVgaAQN0u8H9/8+Grzxrvn10vDFNNAguC9s16HB+w3K6fDVDebf8e47X/ohQxuscmyGo6VrAAAAAAAAAAAAbLUv5Ez165FHQ9kMT6PBbFl2e9kMZTc8Tr/sw6Hsh6fRoPL9RA3C+UrzNIDgWbAnhswN3Bc0qE7Pyu5My1D2w9NoUGX+XGg0cE6E5uIW8OhnwZ6Yu4H7ggaVs7IGQYMq8+dCo8Ffcq6avOwH7o0h8/+B+4IGlbOyBkGDKvPnQqMB0NgPNAiZG7gvaFA5K2sQNKgyfy40GgCN/UCD/khwNJSD4UncFzQA+Bg7pAZBAwB67SaVmQYaQONB0CBoAEDPWVmDoAH88iBoEDQAoOesrAGwsBloEDQAoOe+oAFQfgDMfQ5hm8Ic0AAAAABJRU5ErkJggg==);
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;}
+  </style>
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
