@@ -19,10 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link font-weight-bold text-white" href="/posts/new">New Post</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link font-weight-bold text-white" href="/users/<%=@user.username%>">My Profile</a>
+          <a class="nav-link font-weight-bold text-white" href="/users/<%=@user.username%>">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link font-weight-bold text-white" href="/logout">Log Out</a>
@@ -30,32 +27,35 @@
       </ul>
     </div>
   </nav>
-  <br>
   </div>
-  <br><br>
-  <div class="card border-primary mb-3 container" style="width:100%;">
-    <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:69.25rem;">
-    <h2>Transit Clique Community Home Page</h2>
+  <div class="font-italic" style="text-align: center">
+    <h1>Community Home Page</h1>
     </div>
-    <br><br>
-    <% @posts.each do |post| %>
+    <div class="card border-secondary container" style="width:100%;">
+    <% @posts.each do |post|%>
       <h4> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h4>
-      <p>
-        Posted by: @<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
-      </p>
-      <p><em>Travel Dates: <%= post.travel_date %> Return Date: <%= post.return_date %></em></p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Posted by: </h7></div>
+       <p>@<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %></p>
+       <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Trip dates:</h7></div>
+      <p><em><%= post.travel_date %> / <%= post.return_date %></em></p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Post:</h7></div>
       <p><%= post.content %> </p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+      <h7>Destinations:</h7></div>
       <p>
-        Destinations:<% post.destinations.each do |d| %>
+      <% post.destinations.each do |d| %>
         <span class="badge badge-primary"><%= d.country %></span>
         <% end %>
       </p>
-      <br><br>
+      <p>_________________________________________________________________________________________________________________________________________________________________</p>
     <% end %>
     <div style="text-align: center">
       <a href="/posts/new"><input type="button" class="btn btn-dark btn-lg" value="New Post" /></a>
     </div>
-    <br><br>
+    <br>
   </div>
 
   <!-- CSS -->

@@ -17,20 +17,20 @@ Transit Clique
 <% if !!flash[:message] %>
   <div class="alert alert-dismissible alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Oops! </strong><%= flash[:message] %>
+    <strong>Error! </strong><%= flash[:message] %>
   </div>
 <% end %>
 
 <br><br>
 <div style="text-align: center">
-  <h4>Edit Your Post</h4>
+  <h4>Edit Post</h4>
 </div><br>
-<div class="container" style="width:60%;">
+<div class="card border-dark container" style="width:100%;">
   <form class="form-center" action="/posts/<%=@post_id%>/comments/<%=@comment.id%>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
-    <div class="form-group">
+    <div class="form group">
       <label for="comment_content">Content</label>
-      <input type="text" id="comment_content" class="form-control" name="comment[content]" value="<%= @comment.content %>"></input>
+   <input type="text" id="comment_content" class="form-control" name="comment[content]" value="<%= @comment.content %>"></input>
     </div>
     <div style="text-align: center">
       <button type="submit" class="btn btn-dark">Save Changes</button>

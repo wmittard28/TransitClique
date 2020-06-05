@@ -6,14 +6,6 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
-  <img src="/images/logo/logo2.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-  Transit Clique
-</a>
-  </nav>
-
   <% if !!flash[:message] %>
     <div class="alert alert-dismissible alert-info">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -22,34 +14,108 @@
   <% end %>
 
   <br><br>
-  <div style="text-align: center">
-    <h4>Log in</h4>
+  <style type="text/css">
+body {
+  color: #fff;
+  background: #4c535d;
+  font-family: 'Roboto', sans-serif;
+}
+  .form-control {
+      min-height: 41px;
+  box-shadow: none;
+  border-color: #e1e4e5;
+}
+  .form-control:focus {
+  border-color: #5fcaba;
+}
+  .form-control, .btn {
+      border-radius: 3px;
+  }
+.signup-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+  .signup-form form {
+  color: #9ba5a8;
+  border-radius: 3px;
+    margin-bottom: 15px;
+      background: #fff;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+  }
+.signup-form h2 {
+  color: #333;
+  font-weight: bold;
+      margin-top: 0;
+  }
+  .signup-form hr {
+      margin: 0 -30px 20px;
+  }
+.signup-form .form-group {
+  margin-bottom: 20px;
+}
+  .signup-form label {
+  font-weight: normal;
+  font-size: 13px;
+}
+  .signup-form .btn {
+      font-size: 16px;
+      font-weight: bold;
+  background: #5fcaba;
+  border: none;
+  min-width: 140px;
+  }
+.signup-form .btn:hover, .signup-form .btn:focus {
+  background: #3fc0ad;
+      outline: none !important;
+}
+.signup-form a {
+  color: #fff;
+  text-decoration: underline;
+}
+  .signup-form a:hover {
+  text-decoration: none;
+}
+.signup-form form a {
+  color: #5fcaba;
+  text-decoration: none;
+}
+.signup-form form a:hover {
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+<div class="signup-form font-weight-bold text-dark">
+  <form action="/login" method="post">
+  <div class="font-weight-bold text-dark">
+  <img src="/images/logo/logo2.png" width="25" height="25" class="d-inline-block align-top" alt="" loading="lazy">
+  Transit Clique
   </div>
   <br>
-  <div class="container" style="width:50%;">
-    <form class="form-center" action="/login" method="POST">
+  <h2>Log In</h2>
+  <hr>
       <div class="form-group">
-        <label>Username:</label>
-        <input type="text" class="form-control" name="username" placeholder="username">
+        <input type="text" class="form-control" name="username" placeholder="Username" required="required">
       </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+  <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password" required="required">
       </div>
-      <div style="text-align: center">
-        <button type="submit" class="btn btn-dark">Sign In</button>
+  <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
       </div>
-    </form>
-  </div>
-  <div style="text-align: center">
-    <p>Don't have an account? <strong><a href="/signup">Sign Up</a></strong>.</p>
-  </div>
+      <div class="text-center text-dark">Don't have an account? <a href="/signup">Sign up here</a></div>
+  </form>
+ </div>
+ </body>
+ </html>
 
   <!-- CSS -->
   <style type="text/css">
     html, body { height: 100%;}
     body {
-      background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-031.jpg);
+      background-image: url(https://wallpaperaccess.com/full/42551.jpg);
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;}

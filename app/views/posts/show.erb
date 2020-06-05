@@ -27,42 +27,53 @@
       </ul>
     </div>
   </nav>
-  <br><br>
-  <div class="card container" style="width:100%;">
-  <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:20rem;">
-    <h4><%= @post.title %></h4>
+  <div class="font-weight-bold font-italic" style="text-align: center">
+    <h2><%= @post.title %></h2>
     </div>
+  <div class="card border-dark container" style="width:100%;">
     <br>
+    <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Posted by: </h7></div>
     <p>
-      Posted by: @<a href="/users/<%= @post.user.username %>"><%= @post.user.username %></a>,  on  <%= @post.updated_at.gmtime.localtime  %>
+     @<a href="/users/<%= @post.user.username %>"><%= @post.user.username %></a>,  on  <%= @post.updated_at.gmtime.localtime  %>
     </p>
-    <p><em>Travel Date: <%= @post.travel_date %>  Return Date: <%= @post.return_date %></em></p>
+    <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Trip dates:</h7></div>
+    <p><em><%= @post.travel_date %> / <%= @post.return_date %></em></p>
+    <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Post:</h7></div>
     <p><%= @post.content %></p>
+    <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+      <h7>Destinations:</h7></div>
     <p>
       Destinations: <% @post.destinations.each do |d| %>
         <span class="badge badge-primary"><%= d.country %></span>
       <%end%>
     </p>
+    _________________________________________________________________________________________________________________________________________________________________
+    <br><br>
     <!-- User can see edit button, if it is their post -->
     <% if @post.user_id == current_user.id %>
       <a href="/posts/<%=@post.id%>/edit"><button type="submit" class="btn btn-dark">Edit your post</button></a>
     <%end%>
   </div>
-  <div class="card container" style="width:100%;">
-  <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:20rem;">
-  <h4>Comments:</h4>
+  <div class="font-weight-bold font-italic" style="text-align: center">
+  <h2>Comments:</h2>
     </div>
-    <br>
+    <div class="card border-dark container" style="width:100%;">
     <% @comments.each do |comment| %>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Posted by: </h7></div>
       <p>
-        Posted by: @<a href="/users/<%= comment.user.username %>"><%= comment.user.username %></a>,  on  <%= comment.updated_at.gmtime.localtime  %>
+       @<a href="/users/<%= comment.user.username %>"><%= comment.user.username %></a>,  on  <%= comment.updated_at.gmtime.localtime  %>
       </p>
       <p><%= comment.content %></p>
+      <br>
       <!-- User can see edit button, if it is their comment -->
       <% if comment.user_id == current_user.id %>
         <a href="/posts/<%=@post.id%>/comments/<%=comment.id%>/edit" ><input type="button" class="btn btn-dark" value="Edit Your comment" /></a>
       <%end%>
-      <br><br>
+      _________________________________________________________________________________________________________________________________________________________________
     <%end%>
     <br><br>
     <div style="text-align: center">

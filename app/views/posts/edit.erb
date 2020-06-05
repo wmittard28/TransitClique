@@ -20,33 +20,31 @@ Transit Clique
     <strong>ERROR! </strong><%= flash[:message] %>
   </div>
 <% end %>
-
-<br><br>
-<div style="text-align: center">
-  <h4>Edit Your Post</h4>
-</div>
 <br>
-<div class="container" style="width:60%;">
+<div style="text-align: center">
+  <h4>Edit Post</h4>
+</div>
+<div class="card border-dark container" style="width:100%;">
   <form class="form-center" action="/posts/<%=@post.id%>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="PATCH">
     <div class="form-group">
-      <label for="post_title">Title</label>
+      <label for="post_title">Title:</label>
       <input type="text" id="post_title" class="form-control" name="post[title]" value="<%= @post.title %>"> </input>
     </div>
     <div class="form-group">
-      <label for="post_content">Content</label>
+      <label for="post_content">Content:</label>
       <input type="text" id="post_content" class="form-control" name="post[content]" value="<%= @post.content %>"></input>
     </div>
     <div class="form-group">
-      <label for="travel_date">Travel Date</label>
+      <label for="travel_date">Travel Date:</label>
       <input type="date" id="travel_date" class="form-control" name="post[travel_date]" value="<%= @post.travel_date %>"></input>
     </div>
     <div>
-      <label for="return_date">Return Date</label>
+      <label for="return_date">Return Date:</label>
       <input type="date" id="return_date" class="form-control" name="post[return_date]" value="<%= @post.return_date %>"></input>
     </div>
     <br><br>
-    <h4>Edit destinaion tags:</h4>
+    <h4>Edit destinations:</h4>
     <div style="overflow-y: scroll; height:400px;">
       <% Destination.all.each do |d| %>
       <input type="checkbox" name="post[destination_ids][]" value="<%= d.id %>" id="destination_<%= d.id %>"  <%='checked' if @post.destinations.include?(d)%> >

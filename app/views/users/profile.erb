@@ -24,26 +24,33 @@ Logged in as: @<a href="/users/<%=@user.username%>"><%=@user.username%></a>
       </ul>
     </div>
   </nav>
-  <br><br>
-  <a> <img src="/images/profile/images.jpg" width="200" height="200" class="rounded-circle" alt=""></a>
-  <div class="container" style="width:70%;">
+  <br>
   <div class="badge badge-secondary text-wrap font-weight-bold font-italic" style="width:20rem;">
   <h2>Profile: @<%= @user.username %></h2>
     </div>
-    <br><br>
-    <h4>Post history:</h4>
+    <div style="text-align: center">
+    <h3>Post History</h3>
+    </div>
     <br>
+    <div class="card border-dark container" style="width:100%;">
     <% @posts.each do |post| %>
       <h4> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h4>
-      <p>
-        Posted by: @<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
-      </p>
-      <p><em>Travel Date: <%= post.travel_date %> Return Date: <%= post.return_date %></em></p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+      <h7> Posted by: </h7></div>
+      <p>@<a href="/users/<%= post.user.username %>"><%= post.user.username %></a>,  on  <%= post.updated_at.gmtime.localtime  %>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Trip dates:</h7></div>
+      <p><em><%= post.travel_date %> / <%= post.return_date %></em></p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:6rem;">
+       <h7> Post:</h7></div>
       <p><%= post.content %></p>
-      <p>Destinations:</p>
+      <div class="badge badge-secondary text-wrap font-weight-bold" style="width:8rem;">
+      <h7>Destinations:</h7></div>
+      <p>
         <% post.destinations.each do |d| %>
         <span class="badge badge-primary"><%= d.country %></span>
-      <% end %> <br><br><br>
+      <% end %> <br><br><br></p>
+      _________________________________________________________________________________________________________________________________________________________________
     <% end %>
     <div style="text-align: center">
       <a href="/posts/new" ><input type="button" class="btn btn-dark btn-lg" value="Create New Post" /></a>
@@ -55,9 +62,9 @@ Logged in as: @<a href="/users/<%=@user.username%>"><%=@user.username%></a>
   </div>
   <!-- CSS -->
   <style type="text/css">
-    html, body { height: 100%;}
+    html, body { height: 1000%;}
     body {
-      background-image: url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-031.jpg);
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAABlBMVEXr6+vq6urHpScPAAABcklEQVR4nO3a22rDMBBAQfn/f7qsK2H51jpOEME78xL2IbQ6rRUJUgoAAAAAXDCFT7y3H6b9MIgG4xscrDRPg6GrumH1K/4/aHB7J3jZoNVfXfZqGNVgaAQN0u8H9/8+Grzxrvn10vDFNNAguC9s16HB+w3K6fDVDebf8e47X/ohQxuscmyGo6VrAAAAAAAAAAAAbLUv5Ez165FHQ9kMT6PBbFl2e9kMZTc8Tr/sw6Hsh6fRoPL9RA3C+UrzNIDgWbAnhswN3Bc0qE7Pyu5My1D2w9NoUGX+XGg0cE6E5uIW8OhnwZ6Yu4H7ggaVs7IGQYMq8+dCo8Ffcq6avOwH7o0h8/+B+4IGlbOyBkGDKvPnQqMB0NgPNAiZG7gvaFA5K2sQNKgyfy40GgCN/UCD/khwNJSD4UncFzQA+Bg7pAZBAwB67SaVmQYaQONB0CBoAEDPWVmDoAH88iBoEDQAoOesrAGwsBloEDQAoOe+oAFQfgDMfQ5hm8Ic0AAAAABJRU5ErkJggg==);
       background-repeat: no-repeat;
       background-position: top center;
       background-size: cover;}
