@@ -5,9 +5,11 @@ require 'sinatra/flash'
 class PostsController < ApplicationController
   register Sinatra::Flash
 
+
+
   get '/posts' do #post index page
     if logged_in?
-      @user = User.find_by_id(session[:user_id])
+      @user = current_user
       @posts = Post.all
       erb :'posts/index'
     else
@@ -34,18 +36,17 @@ class PostsController < ApplicationController
       flash[:message] = "Please enter in all boxes"
       redirect to "/posts/new"
     else
-      @post = Post.new(params[:post])
-      @post.user_id = current_user.id
+      @post = current_user.posts.new(params[:post])
       @post.save
     end
     redirect to "/posts/#{@post.id}"
   end
 
-  get '/posts/:post_id' do #shows a post; also index page for comments
+  get '/posts/:post_id' do 
     if logged_in?
-      @user = User.find_by_id(session[:user_id])
-      @post = Post.find_by_id(params[:post_id])
-      @comments = Comment.where("post_id = #{@post.id}") #all comments where post id is == the current post id
+      @user = current_user
+      set_post
+      @comments = @posts.comments
       erb :'posts/show'
     else
       redirect 'login'
@@ -54,7 +55,7 @@ class PostsController < ApplicationController
 
   get '/posts/:post_id/edit' do #edit post
     if logged_in?
-      @post = Post.find_by_id(params[:post_id])
+       set_post
       if @post.user_id == current_user.id
        erb :'posts/edit'
       else
@@ -66,8 +67,8 @@ class PostsController < ApplicationController
   end
 
   patch '/posts/:post_id' do #update post
-    if logged_in?
-      @post = Post.find_by_id(params[:post_id])
+    set_post
+    if logged_in? && @post.user_id == current_user.id
       if params[:post][:title] == "" ||
         params[:post][:content] == "" ||
         params[:post][:travel_date] == "" ||
@@ -86,7 +87,7 @@ class PostsController < ApplicationController
   end
 
   delete '/posts/:post_id/delete' do #delete post
-      @post = Post.find_by_id(params[:post_id])
+      set_post
       if logged_in? && @post.user_id == current_user.id
         @post.delete
         redirect to "/posts"
@@ -94,5 +95,10 @@ class PostsController < ApplicationController
         flash[:message] = "Please Log in"
       redirect 'login'
     end
+  end
+
+  private
+  def set_post  #private method
+    @post = Post.find_by_id(params[:post_id])
   end
 end

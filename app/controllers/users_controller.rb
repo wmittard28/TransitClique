@@ -5,7 +5,7 @@ require 'sinatra/flash'
 class UsersController < ApplicationController
   register Sinatra::Flash
 
-  get '/users/:slug' do
+  get '/users/:slug' do #slug is object_id vs user_id
     @user = User.find_by_slug(params[:slug])
     @posts = Post.where("user_id = #{@user.id}") #all posts where user id is == the current user id
     erb :'users/profile'
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect '/posts' #in posts_controller.
+      redirect '/posts' 
     else
       erb :'users/signup'
     end
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
   get '/about' do
     erb :'users/about'
-  end 
+  end
 
 
   get '/logout' do

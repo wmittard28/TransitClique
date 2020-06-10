@@ -9,8 +9,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, "app/views"
-    enable :sessions
-    set :session_secret, "password_security_key"
+    enable :sessions  #turns session on
+    set :session_secret, "password_security_key" #encryption key for session_id
   end
 
   get '/' do
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!current_user
+      !!current_user  #!! turns value into a boolean
     end
 
     def current_user
@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def username_exists?(username)
-      User.find_by(username: username) != nil
+      User.find_by(username: username) != nil #!= if not equal then true
     end
 
     def email_exists?(email)

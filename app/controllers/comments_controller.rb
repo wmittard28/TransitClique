@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
 
   # NOTE: Index page for comments is on the posts show page --> '/post/:id' since only comments belonging to a post are shown.
 
-  get '/posts/:post_id/comments/new' do #new comment
+  get '/posts/:post_id/comments/new' do #new
     @post = Post.find_by_id(params[:post_id])
     erb :'comments/new'
   end
 
-  post '/posts/:post_id/comments' do  #create comment
+  post '/posts/:post_id/comments' do  #create
     post_id = params[:post_id]
     if params[:comment][:content] == ""
       flash[:message] = "Boxes can't be empty"
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     redirect to "/posts/#{post_id}/comments/#{@comment.id}"
   end
 
-  get '/posts/:post_id/comments/:comment_id' do #show a single comment
+  get '/posts/:post_id/comments/:comment_id' do #show
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  get '/posts/:post_id/comments/:comment_id/edit' do #edit comment
+  get '/posts/:post_id/comments/:comment_id/edit' do #edit
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  patch '/posts/:post_id/comments/:comment_id' do #update comment
+  patch '/posts/:post_id/comments/:comment_id' do #update
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
@@ -68,7 +68,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  delete '/posts/:post_id/comments/:comment_id/delete' do #delete comment
+  delete '/posts/:post_id/comments/:comment_id/delete' do #delete 
     if logged_in?
       @post_id = params[:post_id]
       @comment = Comment.find_by_id(params[:comment_id])
