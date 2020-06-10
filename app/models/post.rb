@@ -3,4 +3,6 @@ class Post < ActiveRecord::Base
     has_many :destinations, through: :post_destinations
     has_many :comments
     belongs_to :user
+
+    validates_presence_of :comments
   end

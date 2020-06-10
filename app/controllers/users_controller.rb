@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect '/posts' 
+      redirect '/posts'
     else
       erb :'users/signup'
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
+    @user = current_user
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/posts' #in posts_controller.

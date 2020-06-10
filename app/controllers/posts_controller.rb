@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     if logged_in?
       @user = current_user
       set_post
-      @comments = @posts.comments #all comments where post id is == the current post id
+      @comments = @post.comments
       erb :'posts/show'
     else
       redirect 'login'

@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    @user = User.find_by_id(session[:user_id])
+    @user = current_user
     if logged_in?
       redirect to '/posts'
     else
