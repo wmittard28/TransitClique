@@ -42,11 +42,11 @@ class PostsController < ApplicationController
     redirect to "/posts/#{@post.id}"
   end
 
-  get '/posts/:post_id' do 
+  get '/posts/:post_id' do #shows a post; also index page for comments
     if logged_in?
       @user = current_user
       set_post
-      @comments = @posts.comments
+      @comments = @posts.comments #all comments where post id is == the current post id
       erb :'posts/show'
     else
       redirect 'login'
