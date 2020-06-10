@@ -61,23 +61,16 @@ class PostsController < ApplicationController
     end
   end
 
+
   patch '/posts/:post_id' do #update post
     set_post
     if logged_in? && @post.user_id == current_user.id
-      if params[:post][:title] == "" ||
-        params[:post][:content] == "" ||
-        params[:post][:travel_date] == "" ||
-        params[:post][:return_date] == "" ||
-        params[:post][:return_date] < params[:post][:travel_date]
+      @post.update(params[:post])
+      @post.save
+      redirect to "/posts/#{@post.id}"
+    else
         flash[:message] = "Please enter in all boxes"
         redirect to "/posts/#{@post.id}/edit"
-      else
-        @post.update(params[:post])
-        @post.save
-        redirect to "/posts/#{@post.id}"
-      end
-    else
-      redirect 'login'
     end
   end
 

@@ -12,19 +12,20 @@ class CommentsController < ApplicationController
     erb :'comments/new'
   end
 
+
+
   post '/posts/:post_id/comments' do  #create
     post_id = params[:post_id]
-    if params[:comment][:content] == ""
-      flash[:message] = "Boxes can't be empty"
-      redirect to "/posts/#{post_id}/comments/new"
+    if comment = params[:comment]
+       comment[:post_id] = params[:post_id]
+       comment[:user_id] = session[:user_id]
+       @comment = Comment.create(comment)
+       @comment.save
+       redirect to "/posts/#{post_id}/comments/#{@comment.id}"
     else
-      comment = params[:comment]
-      comment[:post_id] = params[:post_id]
-      comment[:user_id] = session[:user_id]
-      @comment = Comment.create(comment)
-      @comment.save
+      flash[:message] = "Please enter in all boxes"
+      redirect to "/posts/#{post_id}/comments/new"
     end
-    redirect to "/posts/#{post_id}/comments/#{@comment.id}"
   end
 
   get '/posts/:post_id/comments/:comment_id' do #show
@@ -71,7 +72,7 @@ class CommentsController < ApplicationController
   delete '/posts/:post_id/comments/:comment_id/delete' do #delete
     if logged_in?
       @post_id = params[:post_id]
-      @set_comment
+      set_comment
       if @comment.user_id == current_user.id
         @comment.delete
         redirect to "/posts/#{@post_id}" #redirect to comments index
