@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @posts = Post.all
       erb :'posts/index'
     else
-        flash[:message] = "Please Log in"
+        flash[:message] = "Please enter in all boxes"
       redirect 'login'
     end
   end
@@ -22,25 +22,20 @@ class PostsController < ApplicationController
     if logged_in?
       erb :'posts/new'
     else
-        flash[:message] = "Please Log in"
+      flash[:message] = "Please enter in all boxes"
       redirect 'login'
     end
   end
 
   post '/posts' do #create post
-    if params[:post][:title] == "" ||
-        params[:post][:content] == "" ||
-        params[:post][:travel_date] == "" ||
-        params[:post][:return_date] == "" ||
-        params[:post][:return_date] < params[:post][:travel_date]
+    @post = current_user.posts.new(params[:post])
+    if @post.save
+      redirect to "/posts/#{@post.id}"
+    else
       flash[:message] = "Please enter in all boxes"
       redirect to "/posts/new"
-    else
-      @post = current_user.posts.new(params[:post])
-      @post.save
     end
-    redirect to "/posts/#{@post.id}"
-  end
+ end
 
   get '/posts/:post_id' do #shows a post; also index page for comments
     if logged_in?

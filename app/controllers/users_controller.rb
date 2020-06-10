@@ -19,17 +19,21 @@ class UsersController < ApplicationController
     end
   end
 
-
   post '/signup' do
     @new_user = User.create(username: params[:username], email: params[:email], password: params[:password])
     if @new_user.save
       session[:user_id] = @new_user.id
       redirect to "/posts"
+    elsif
+      username_exists?(params[:username]) || email_exists?(params[:email])
+      flash[:message] = "This username and/or email is already in use."
+      redirect to '/signup'
     else
       flash[:message] = "Please enter in all boxes"
       redirect to '/signup'
     end
   end
+
 
   get '/login' do
     if logged_in?
@@ -40,18 +44,12 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = current_user
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/posts' #in posts_controller.
-    elsif
-      params[:username] == "" ||
-      params[:password] == ""
-      flash[:message] = "Please enter in all boxes"
-      redirect_if_not_logged_in
     else
-      flash[:message] = "The username/password you've entered does not match our records. Please try again."
-      redirect_if_not_logged_in
+      redirect to '/posts'
     end
   end
 

@@ -71,7 +71,7 @@ class CommentsController < ApplicationController
   delete '/posts/:post_id/comments/:comment_id/delete' do #delete
     if logged_in?
       @post_id = params[:post_id]
-      set_comment
+      @set_comment
       if @comment.user_id == current_user.id
         @comment.delete
         redirect to "/posts/#{@post_id}" #redirect to comments index
