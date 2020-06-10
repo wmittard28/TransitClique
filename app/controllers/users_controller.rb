@@ -44,10 +44,10 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
+    authenticate_user
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/posts' 
+      redirect '/posts'
     else
       redirect to '/posts'
     end
@@ -67,4 +67,8 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+  def authenticate_user
+    @user = User.find_by(username: params[:username])
+  end
 end

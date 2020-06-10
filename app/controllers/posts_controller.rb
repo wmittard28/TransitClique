@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @posts = Post.all
       erb :'posts/index'
     else
-        flash[:message] = "Please enter in all boxes"
+      flash[:message] = "Please enter in all boxes"
       redirect 'login'
     end
   end
@@ -80,7 +80,6 @@ class PostsController < ApplicationController
         @post.delete
         redirect to "/posts"
     else
-        flash[:message] = "Please Log in"
       redirect 'login'
     end
   end
