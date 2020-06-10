@@ -19,23 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
+
   post '/signup' do
-    if params[:username] == "" ||
-      params[:email] == "" ||
-      params[:password] == ""
+    @new_user = User.create(username: params[:username], email: params[:email], password: params[:password])
+    if @new_user.save
+      session[:user_id] = @new_user.id
+      redirect to "/posts"
+    else
       flash[:message] = "Please enter in all boxes"
       redirect to '/signup'
-    elsif
-      username_exists?(params[:username]) || email_exists?(params[:email])
-      flash[:message] = "Username/Email already exists"
-      redirect to '/signup'
-    else
-      @new_user = User.create(username: params[:username],
-      email: params[:email].downcase,
-      password: params[:password])
-      @new_user.save
-      session[:user_id] = @new_user.id
-      redirect '/posts' #in posts_controller.
     end
   end
 

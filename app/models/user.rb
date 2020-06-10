@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
     has_many :posts
     has_many :comments
 
-    validates_presence_of :posts
-    validates_presence_of :comments
+    validates :email, :password, :username, presence: true
+    validates :email, :username, uniqueness: true
 
     def slug
       username.downcase.gsub(" ","-")
