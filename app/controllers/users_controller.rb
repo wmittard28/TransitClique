@@ -22,14 +22,10 @@ class UsersController < ApplicationController
   post '/signup' do
     @new_user = User.create(username: params[:username], email: params[:email], password: params[:password])
     if @new_user.save
+      @new_user.error.full_messages
       session[:user_id] = @new_user.id
       redirect to "/posts"
-    elsif
-      username_exists?(params[:username]) || email_exists?(params[:email])
-      flash[:message] = "This username and/or email is already in use."
-      redirect to '/signup'
     else
-      flash[:message] = "Please enter in all boxes"
       redirect to '/signup'
     end
   end
